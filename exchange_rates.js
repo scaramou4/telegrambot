@@ -9,8 +9,9 @@ async function getRates() {
         responseType: 'json',
         headers: {"Accept-Encoding": "gzip,deflate,compress"}
     }).then(response => fs.writeFile('rates.json', JSON.stringify(response.data), function (err) {
-        console.log(err);
+        const message = (err === null) ? `Загружены курсы на ${response.data.date}` : err;
+            console.log(message);
     }));
 }
 
-export { getRates };
+module.exports = getRates();
