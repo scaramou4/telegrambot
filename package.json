@@ -1,0 +1,28 @@
+{
+  "name": "telegrambot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scaramou4/telegrambot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scaramou4/telegrambot/issues"
+  },
+  "homepage": "https://github.com/scaramou4/telegrambot#readme",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "currency-exchange-rate": "^1.0.9",
+    "currency-exchange-rates": "^0.0.0",
+    "node-telegram-bot-api": "^0.60.0",
+    "nodemon": "^2.0.20"
+  }
+}
