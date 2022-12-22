@@ -7,10 +7,9 @@ async function getRates() {
         method: 'get',
         url: 'https://www.cbr-xml-daily.ru/latest.js',
         responseType: 'json',
-        headers: {"Accept-Encoding": "gzip,deflate,compress"}
+        headers: {"Accept-Encoding": "gzip,deflate, compress"}
     }).then(response => fs.writeFile('rates.json', JSON.stringify(response.data), function (err) {
-        const message = (err === null) ? `Загружены курсы на ${response.data.date}` : err;
-            console.log(message);
+        return (err === null) ? `Загружены курсы на ${response.data.date}` : err;
     }));
 }
 
