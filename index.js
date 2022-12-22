@@ -49,6 +49,7 @@ const start = () => {
         if (formatDate(today) !== lastDate) {
             getRates;
             console.log('файл обновлен');
+            console.log(`last ${lastDate}, in file ${formatDate(today)}`);
             // вызываем файл и читаем из него данные
             fs.readFile('rates.json', 'utf-8', (_error, data) => {
                 messageReply(_error, data, msg);

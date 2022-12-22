@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93686623-d104-4254-baaa-14406dcf4b34" name="Changes" comment="версия для публикации на сервере">
+    <list default="true" id="93686623-d104-4254-baaa-14406dcf4b34" name="Changes" comment="node js fix">
       <change afterPath="$PROJECT_DIR$/object_carry.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/telega-ssh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/telega-ssh.pub" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,7 @@
       <option name="presentableId" value="Default" />
       <updated>1671473769036</updated>
       <workItem from="1671473770136" duration="1873000" />
-      <workItem from="1671475665516" duration="40358000" />
+      <workItem from="1671475665516" duration="40973000" />
     </task>
     <task id="LOCAL-00001" summary="first push">
       <created>1671474355538</created>
@@ -90,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671701099597</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="node js fix">
+      <created>1671702667798</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671702667798</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +115,7 @@
     <MESSAGE value="add exchange rates" />
     <MESSAGE value="refactor" />
     <MESSAGE value="версия для публикации на сервере" />
-    <option name="LAST_COMMIT_MESSAGE" value="версия для публикации на сервере" />
+    <MESSAGE value="node js fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="node js fix" />
   </component>
 </project>
