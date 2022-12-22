@@ -46,7 +46,8 @@ const start = () => {
         }
 
         //если дата сегодня не равна дате в файле - запускается обновление файла
-        if (formatDate(today) !== lastDate) {
+        let currentDate = formatDate(today);
+        if (currentDate !== lastDate) {
             getRates;
             console.log('файл обновлен');
             console.log(`last ${lastDate}, in file ${formatDate(today)}`);
@@ -54,6 +55,7 @@ const start = () => {
             fs.readFile('rates.json', 'utf-8', (_error, data) => {
                 messageReply(_error, data, msg);
             });
+            lastDate = currentDate;
         }
 
         // диалог
