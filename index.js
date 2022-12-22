@@ -36,27 +36,26 @@ const start = () => {
     bot.on('message', async msg => {
         //обновление файла
         let today = new Date();
-        function formatDate(date) {
+
+        async function formatDate(date) {
             var dd = date.getDate();
             if (dd < 10) dd = '0' + dd;
             var mm = date.getMonth() + 1;
             if (mm < 10) mm = '0' + mm;
             var yy = date.getFullYear() ;
             return yy + '-' + mm + '-' + dd;
-        }
+        };
 
         //если дата сегодня не равна дате в файле - запускается обновление файла
         let currentDate = formatDate(today);
         if (currentDate !== lastDate) {
             getRates;
-            console.log('файл обновлен');
-            console.log(`last ${lastDate}, in file ${formatDate(today)}`);
-            // вызываем файл и читаем из него данные
-            fs.readFile('rates.json', 'utf-8', (_error, data) => {
-                messageReply(_error, data, msg);
-            });
             lastDate = currentDate;
-        }
+        };
+        // вызываем файл и читаем из него данные
+        fs.readFile('rates.json', 'utf-8', (_error, data) => {
+            messageReply(_error, data, msg);
+        });
 
         // диалог
         async function messageReply(_error, data, msg) {
