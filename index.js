@@ -1,6 +1,7 @@
 const getRates = require("./exchange_rates");
 const TelegramAPI = require('node-telegram-bot-api');
-const token = '5970057015:AAGRrSbEauXnm24AHJgOcSk2Ke39luhdhyk';
+const config = require('./config.js')
+const token = config.telegram_bot.token;
 const fs = require ('fs');
 const bot = new TelegramAPI(token, {polling: true});
 let currencyCode = [];
