@@ -3,7 +3,8 @@ const TelegramAPI = require('node-telegram-bot-api');
 const token = '5970057015:AAGRrSbEauXnm24AHJgOcSk2Ke39luhdhyk';
 const fs = require ('fs');
 const bot = new TelegramAPI(token, {polling: true});
-let currencyCode = 'USD';
+let currencyCode = [];
+currencyCode[0] = 'USD';
 let lastDate = '2022-12-21';
 const start = () => {
 
@@ -29,15 +30,14 @@ const start = () => {
 
     bot.on('callback_query', async msg => {
         const chatId = msg.message.chat.id;
-        currencyCode = msg.data;
-        return bot.sendMessage(chatId, `Выбрана валюта ${currencyCode}.\nВведите сумму:`);
+        currencyCode[chatId] = msg.data;
+        return bot.sendMessage(chatId, `Выбрана валюта ${currencyCode[chatId]}.\nВведите сумму:`);
     });
 
     bot.on('message', async msg => {
         //обновление файла
         let today = new Date();
-
-        async function formatDate(date) {
+        function formatDate(date) {
             var dd = date.getDate();
             if (dd < 10) dd = '0' + dd;
             var mm = date.getMonth() + 1;
@@ -49,9 +49,9 @@ const start = () => {
         //если дата сегодня не равна дате в файле - запускается обновление файла
         let currentDate = formatDate(today);
         if (currentDate !== lastDate) {
-            getRates;
-            lastDate = currentDate;
+            getRates.then(() => console.log(`файл обновлен`));
         };
+
         // вызываем файл и читаем из него данные
         fs.readFile('rates.json', 'utf-8', (_error, data) => {
             messageReply(_error, data, msg);
@@ -61,6 +61,8 @@ const start = () => {
         async function messageReply(_error, data, msg) {
             const fileData = JSON.parse(data);
             let text = msg.text.replace(/\s/g, '');
+            lastDate = fileData.date;
+            console.log(`last date now is ${lastDate}`);
             const chatId = msg.chat.id;
 
             if (text === "/start") {
@@ -87,11 +89,11 @@ const start = () => {
             }
 
             if (!isNaN(text)) { // нам ввели число
-                const result1 = (text / fileData.rates[currencyCode]).toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
-                const result2 = (text * fileData.rates[currencyCode]).toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+                const result1 = (text / fileData.rates[currencyCode[chatId]]).toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+                const result2 = (text * fileData.rates[currencyCode[chatId]]).toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
                 text = text.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
-                await bot.sendMessage(chatId, `${text} ${currencyCode} = ${result1} рублей`);
-                return bot.sendMessage(chatId, `${text} рублей = ${result2} ${currencyCode}`);
+                await bot.sendMessage(chatId, `${text} ${currencyCode[chatId]} = ${result1} рублей`);
+                return bot.sendMessage(chatId, `${text} рублей = ${result2} ${currencyCode[chatId]}`);
             }
 
             return bot.sendMessage(chatId, `Не понял. Введите сумму или команду`);
